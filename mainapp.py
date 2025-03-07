@@ -209,8 +209,8 @@ def District_Wise_Analysis():
 
     x_ts=df_selection[["District Name","Total Claim Paid","MT+L+PH"]]
     x_ts.sort_values(by="Total Claim Paid",ascending=False,inplace=True)
-    x_ts_melted=x_ts.melt(id_vars=["District Name"],value_vars=["MT+L+PH","Total Claim Paid"],var_name='Category',value_name="Summation of MT,IL,PH and Total Claim")
-    fig11=px.bar(x_ts_melted,x="District Name",y="Summation of Midterm,Localized,Post Harvest and Total Claim",color='Category',title="<b>Summation of Midterm,Localized,Post Harvest and Total Claim Paid (In Lac.) per District <b>",barmode='group',text_auto=True,color_discrete_map={"Total Claim Paid":"olive","MT+L+PH":"purple"})
+    x_ts_melted=x_ts.melt(id_vars=["District Name"],value_vars=["MT+L+PH","Total Claim Paid"],var_name='Category',value_name="Summation of Midterm,Localized,Post Harvest and Total Claim")
+    fig11=px.bar(x_ts_melted,x="District Name",y="Summation of Midterm,Localized,Post Harvest and Total Claim",color='Category',title="<b>Summation of Midterm,Localized,Post Harvest and Total Claim (In Lac.) per District <b>",barmode='group',text_auto=True,color_discrete_map={"Total Claim Paid":"olive","MT+L+PH":"purple"})
     fig11.update_layout(yaxis=dict(showgrid=False),plot_bgcolor="aliceblue",paper_bgcolor="aliceblue")
     st.plotly_chart(fig11)
 
