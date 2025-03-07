@@ -107,3 +107,9 @@ fig14=px.bar(xrevenue,x="Year",y="Revenue",title="<b>Total Revenue per Year<b>",
 fig14.update_traces(marker_color='green')
 fig14.update_layout(yaxis=dict(showgrid=False),plot_bgcolor="blanchedalmond",paper_bgcolor="blanchedalmond")
 st.plotly_chart(fig14)
+
+xprevented=df_selection[["Year","Prevented Sowing"]]
+fig15=px.bar(xprevented,x="Year",y="Prevented Sowing",title="<b>Total Prevented Sowing per Year<b>",text_auto=True)
+fig15.update_traces(marker_color='green')
+fig15.update_layout(yaxis=dict(showgrid=False),plot_bgcolor="lightsteelblue",paper_bgcolor="lightsteelblue")
+st.plotly_chart(fig15)
