@@ -3,7 +3,7 @@ import pandas as pd
 import plotly.express as px
 
 st.set_page_config(page_title="PMFBY ANALYSIS",layout="wide")
-df=pd.read_excel("PMFBY.xlsx")
+df=pd.read_excel("C:\\Users\\dell\\Desktop\\PMFBY.xlsx")
 
 def header_page():
     st.markdown("<h1 style='text-align: center; color: black;'>Analysis of PMFBY Data 2018-2023</h1>", unsafe_allow_html=True)
@@ -61,7 +61,7 @@ def Year_Wise_Analysis():
     st.plotly_chart(fig5)
 
     x_area=df_selection[["Year","Area Insured"]]
-    fig6=px.bar(x_area,x="Year",y="Area Insured",title="<b>Area Insured per Year<b>",text_auto=True)
+    fig6=px.bar(x_area,x="Year",y="Area Insured",title="<b>Area Insured In Hectares per Year<b>",text_auto=True)
     fig6.update_layout(yaxis=dict(showgrid=False),plot_bgcolor="whitesmoke",paper_bgcolor="whitesmoke")
     st.plotly_chart(fig6)
 
@@ -72,7 +72,7 @@ def Year_Wise_Analysis():
     st.plotly_chart(fig7)
 
     x_gross=df_selection[["Year","Gross Premium"]]
-    fig8=px.bar(x_gross,x="Year",y="Gross Premium",title="<b>Gross Premium per Year<b>",text_auto=True)
+    fig8=px.bar(x_gross,x="Year",y="Gross Premium",title="<b>Gross Premium (In Lac.) per Year<b>",text_auto=True)
     fig8.update_traces(marker_color='brown')
     fig8.update_layout(yaxis=dict(showgrid=False),plot_bgcolor="lightsteelblue",paper_bgcolor="lightsteelblue")
     st.plotly_chart(fig8)
@@ -117,6 +117,12 @@ def Year_Wise_Analysis():
     fig14.update_traces(marker_color='green')
     fig14.update_layout(yaxis=dict(showgrid=False),plot_bgcolor="blanchedalmond",paper_bgcolor="blanchedalmond")
     st.plotly_chart(fig14)
+    
+    xprevented=df_selection[["Year","Prevented Sowing"]]
+    fig15=px.bar(xprevented,x="Year",y="Prevented Sowing",title="<b>Total Prevented Sowing (In Lac.) per Year<b>",text_auto=True)
+    fig15.update_traces(marker_color='green')
+    fig15.update_layout(yaxis=dict(showgrid=False),plot_bgcolor="lightsteelblue",paper_bgcolor="lightsteelblue")
+    st.plotly_chart(fig15)
 
 def District_Wise_Analysis():
     st.title("District Wise Analysis of PMFBY Data 2018-2023")
@@ -203,7 +209,7 @@ def District_Wise_Analysis():
 
     x_ts=df_selection[["District Name","Total Claim Paid","MT+L+PH"]]
     x_ts.sort_values(by="Total Claim Paid",ascending=False,inplace=True)
-    x_ts_melted=x_ts.melt(id_vars=["District Name"],value_vars=["MT+L+PH","Total Claim Paid"],var_name='Category',value_name="Summation of Midterm,Localized,Post Harvest and Total Claim")
+    x_ts_melted=x_ts.melt(id_vars=["District Name"],value_vars=["MT+L+PH","Total Claim Paid"],var_name='Category',value_name="Summation of MT,IL,PH and Total Claim")
     fig11=px.bar(x_ts_melted,x="District Name",y="Summation of Midterm,Localized,Post Harvest and Total Claim",color='Category',title="<b>Summation of Midterm,Localized,Post Harvest and Total Claim Paid (In Lac.) per District <b>",barmode='group',text_auto=True,color_discrete_map={"Total Claim Paid":"olive","MT+L+PH":"purple"})
     fig11.update_layout(yaxis=dict(showgrid=False),plot_bgcolor="aliceblue",paper_bgcolor="aliceblue")
     st.plotly_chart(fig11)
@@ -230,6 +236,12 @@ def District_Wise_Analysis():
     fig14.update_traces(marker_color='green')
     fig14.update_layout(yaxis=dict(showgrid=False),plot_bgcolor="blanchedalmond",paper_bgcolor="blanchedalmond")
     st.plotly_chart(fig14)
+    
+    xprevented=df_selection[["District Name","Prevented Sowing"]]
+    fig15=px.bar(xprevented,x="District Name",y="Prevented Sowing",title="<b>Total Prevented Sowing(In Lac.) per District<b>",text_auto=True)
+    fig15.update_traces(marker_color='green')
+    fig15.update_layout(yaxis=dict(showgrid=False),plot_bgcolor="lightsteelblue",paper_bgcolor="lightsteelblue")
+    st.plotly_chart(fig15)
 
 
 page = st.sidebar.selectbox('Select Analysis',['header_page','Year_Wise_Analysis','District_Wise_Analysis']) 
