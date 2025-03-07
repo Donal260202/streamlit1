@@ -2,7 +2,7 @@ import streamlit as st
 import pandas as pd
 import plotly.express as px
 
-st.set_page_config(page_title="PMFBY ANALYSIS",layout="wide")
+st.set_page_config(page_title="PMFBY ANALYSIS Year Wise and District Wise with User Data",layout="wide")
 
 
 def header_page():
