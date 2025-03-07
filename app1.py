@@ -117,6 +117,12 @@ fig14.update_traces(marker_color='green')
 fig14.update_layout(yaxis=dict(showgrid=False),plot_bgcolor="blanchedalmond",paper_bgcolor="blanchedalmond")
 st.plotly_chart(fig14)
 
+xprevented=df_selection[["District Name","Prevented Sowing"]]
+fig15=px.bar(xprevented,x="District Name",y="Prevented Sowing",title="<b>Total Prevented Sowing per District<b>",text_auto=True)
+fig15.update_traces(marker_color='green')
+fig15.update_layout(yaxis=dict(showgrid=False),plot_bgcolor="lightsteelblue",paper_bgcolor="lightsteelblue")
+st.plotly_chart(fig15)
+
 
 
 
