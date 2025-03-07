@@ -1,7 +1,7 @@
 import pandas as pd
 import plotly.express as px
 import streamlit as st
-st.set_page_config(page_title="PMFBY ANALYSIS",layout="wide")
+st.set_page_config(page_title="PMFBY ANALYSIS Year Wise",layout="wide")
 df=pd.read_excel("PMFBY.xlsx")
 #st.dataframe(df)
 
