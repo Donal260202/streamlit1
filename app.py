@@ -1,11 +1,11 @@
 import pandas as pd
 import plotly.express as px
 import streamlit as st
-st.set_page_config(page_title="PMFBY Analysis Year Wise",layout="wide")
-df=pd.read_excel("PMFBY.xlsx")
+st.set_page_config(page_title="PMFBY ANALYSIS",layout="wide")
+df=pd.read_excel("C:\\Users\\dell\\Desktop\\PMFBY.xlsx")
 #st.dataframe(df)
 
-st.title("Analysis of PMFBY Data 2018-2023 Year Wise")
+st.title("Analysis of PMFBY Data 2018-2023")
 
 
 st.sidebar.header("Please Select the District:")
@@ -21,12 +21,18 @@ fig1=px.bar(xyz,x="Year",y="Total Applications",title="<b>Total Application per 
 fig1.update_traces(marker_color='green')
 fig1.update_layout(yaxis=dict(showgrid=False),plot_bgcolor="lightsteelblue",paper_bgcolor="lightsteelblue")
 st.plotly_chart(fig1)
+xyz.reset_index(drop=True,inplace=True)
+st.dataframe(xyz)
 
 x_farmers=df_selection[["Year","Farmers"]]
 fig2=px.bar(x_farmers,x="Year",y="Farmers",title="<b>Total Farmers per Year<b>",text_auto=True)
 fig2.update_traces(marker_color='purple')
 fig2.update_layout(yaxis=dict(showgrid=False),plot_bgcolor="lightsalmon",paper_bgcolor="lightsalmon")
+
 st.plotly_chart(fig2)
+x_farmers.reset_index(drop=True,inplace=True)
+st.dataframe(x_farmers)
+
 
 
 x_fa=df_selection[["Year","Farmers","Total Applications"]]
@@ -34,6 +40,8 @@ x_fa_melted=x_fa.melt(id_vars=["Year"],value_vars=["Farmers","Total Applications
 fig3=px.bar(x_fa_melted,x="Year",y="Farmers and Applications",color='Category',title="<b>Total Farmers And Applications per Year<b>",barmode='group',text_auto=True,color_discrete_map={"Farmers":"#ec7c34","Total Applications":"darkslateblue"})
 fig3.update_layout(yaxis=dict(showgrid=False),plot_bgcolor="lightskyblue",paper_bgcolor="lightskyblue")
 st.plotly_chart(fig3)
+x_fa.reset_index(drop=True,inplace=True)
+st.dataframe(x_fa)
 
 
 x_pr=df_selection[["Year","GP/Sum Insured"]]
@@ -42,6 +50,8 @@ fig4 = px.line(x_pr, x="Year", y="GP/Sum Insured",title="<b>Average Premium rate
 fig4.update_traces(textposition="bottom center")
 fig4.update_layout(yaxis=dict(showgrid=False),plot_bgcolor="lightyellow",paper_bgcolor="lightyellow")
 st.plotly_chart(fig4)
+x_pr.reset_index(drop=True,inplace=True)
+st.dataframe(x_pr)
 
 x_cap=df_selection[["Year","Claim Against Premium"]]
 x_cap["Claim Against Premium"]=(x_cap["Claim Against Premium"].round(2))*100
@@ -49,23 +59,31 @@ fig5 = px.line(x_cap, x="Year", y="Claim Against Premium",title="<b>Claim Agains
 fig5.update_traces(textposition="top center")
 fig5.update_layout(yaxis=dict(showgrid=False),plot_bgcolor="lightyellow",paper_bgcolor="lightyellow")
 st.plotly_chart(fig5)
+x_cap.reset_index(drop=True,inplace=True)
+st.dataframe(x_cap)
 
 x_area=df_selection[["Year","Area Insured"]]
 fig6=px.bar(x_area,x="Year",y="Area Insured",title="<b>Area Insured per Year<b>",text_auto=True)
 fig6.update_layout(yaxis=dict(showgrid=False),plot_bgcolor="whitesmoke",paper_bgcolor="whitesmoke")
 st.plotly_chart(fig6)
+x_area.reset_index(drop=True,inplace=True)
+st.dataframe(x_area)
 
 x_sum=df_selection[["Year","Sum Insured (In Lac.)"]]
 fig7=px.bar(x_sum,x="Year",y="Sum Insured (In Lac.)",title="<b>Sum Insured (In Lac.) per Year<b>",text_auto=True)
 fig7.update_traces(marker_color='red')
 fig7.update_layout(yaxis=dict(showgrid=False),plot_bgcolor="lightgoldenrodyellow",paper_bgcolor="lightgoldenrodyellow")
 st.plotly_chart(fig7)
+x_sum.reset_index(drop=True,inplace=True)
+st.dataframe(x_sum)
 
 x_gross=df_selection[["Year","Gross Premium"]]
 fig8=px.bar(x_gross,x="Year",y="Gross Premium",title="<b>Gross Premium per Year<b>",text_auto=True)
 fig8.update_traces(marker_color='brown')
 fig8.update_layout(yaxis=dict(showgrid=False),plot_bgcolor="lightsteelblue",paper_bgcolor="lightsteelblue")
 st.plotly_chart(fig8)
+x_gross.reset_index(drop=True,inplace=True)
+st.dataframe(x_gross)
 
 
 x_gs=df_selection[["Year","Gross Premium","Sum Insured (In Lac.)"]]
@@ -73,6 +91,8 @@ x_gs_melted=x_gs.melt(id_vars=["Year"],value_vars=["Gross Premium","Sum Insured 
 fig9=px.bar(x_gs_melted,x="Year",y="Gross Premium and Sum Insured (In Lac.)",color='Category',title="<b>Gross Premium And Sum Insured (In Lac.) per Year<b>",barmode='group',text_auto=True,color_discrete_map={"Gross Premium":"blue","Sum Insured (In Lac.)":"red"})
 fig9.update_layout(yaxis=dict(showgrid=False),plot_bgcolor="lightgreen",paper_bgcolor="lightgreen")
 st.plotly_chart(fig9)
+x_gs.reset_index(drop=True,inplace=True)
+st.dataframe(x_gs)
 
 
 x_gt=df_selection[["Year","Gross Premium","Total Claim Paid"]]
@@ -80,13 +100,16 @@ x_gt_melted=x_gt.melt(id_vars=["Year"],value_vars=["Gross Premium","Total Claim 
 fig10=px.bar(x_gt_melted,x="Year",y="Gross Premium and Total Claim Paid",color='Category',title="<b>Gross Premium And Total Claim Paid (In Lac.) per Year<b>",barmode='group',text_auto=True,color_discrete_map={"Gross Premium":"green","Total Claim Paid":"yellow"})
 fig10.update_layout(yaxis=dict(showgrid=False),plot_bgcolor="lightpink",paper_bgcolor="lightpink")
 st.plotly_chart(fig10)
-
+x_gt.reset_index(drop=True,inplace=True)
+st.dataframe(x_gt)
 
 x_ts=df_selection[["Year","Total Claim Paid","MT+L+PH"]]
 x_ts_melted=x_ts.melt(id_vars=["Year"],value_vars=["MT+L+PH","Total Claim Paid"],var_name='Category',value_name="Summation of Midterm,Localized,Post Harvest and Total Claim")
 fig11=px.bar(x_ts_melted,x="Year",y="Summation of Midterm,Localized,Post Harvest and Total Claim",color='Category',title="<b>Summation of Midterm,Localized,Post Harvest and Total Claim Paid (In Lac.) per Year<b>",barmode='group',text_auto=True,color_discrete_map={"Total Claim Paid":"olive","MT+L+PH":"purple"})
 fig11.update_layout(yaxis=dict(showgrid=False),plot_bgcolor="aliceblue",paper_bgcolor="aliceblue")
 st.plotly_chart(fig11)
+x_ts.reset_index(drop=True,inplace=True)
+st.dataframe(x_ts)
 
 
 x_ty=df_selection[["Year","Total Claim Paid","Yield Based"]]
@@ -94,6 +117,8 @@ x_ty_melted=x_ty.melt(id_vars=["Year"],value_vars=["Yield Based","Total Claim Pa
 fig12=px.bar(x_ty_melted,x="Year",y="Yield Based and Total Claim Paid",color='Category',title="<b>Yield Based and Total Claim Paid (In Lac.) per Year<b>",barmode='group',text_auto=True,color_discrete_map={"Total Claim Paid":"red","Yield Based":"yellow"})
 fig12.update_layout(yaxis=dict(showgrid=False),plot_bgcolor="aqua",paper_bgcolor="aqua")
 st.plotly_chart(fig12)
+x_ty.reset_index(drop=True,inplace=True)
+st.dataframe(x_ty)
 
 
 x_ff=df_selection[["Year","Farmers","Total Farmer Benefit(Actual)"]]
@@ -101,15 +126,22 @@ x_ff_melted=x_ff.melt(id_vars=["Year"],value_vars=["Total Farmer Benefit(Actual)
 fig13=px.bar(x_ff_melted,x="Year",y="Total Farmer Benefit and Farmers",color='Category',title="<b>Total Farmer Benefit and Farmers per Year<b>",barmode='group',text_auto=True,color_discrete_map={"Total Farmer Benefit(Actual)":"yellow","Farmers":"blue"})
 fig13.update_layout(yaxis=dict(showgrid=False),plot_bgcolor="aquamarine",paper_bgcolor="aquamarine")
 st.plotly_chart(fig13)
+x_ff.reset_index(drop=True,inplace=True)
+st.dataframe(x_ff)
 
 xrevenue=df_selection[["Year","Revenue"]]
 fig14=px.bar(xrevenue,x="Year",y="Revenue",title="<b>Total Revenue per Year<b>",text_auto=True)
 fig14.update_traces(marker_color='green')
 fig14.update_layout(yaxis=dict(showgrid=False),plot_bgcolor="blanchedalmond",paper_bgcolor="blanchedalmond")
 st.plotly_chart(fig14)
+xrevenue.reset_index(drop=True,inplace=True)
+st.dataframe(xrevenue)
 
 xprevented=df_selection[["Year","Prevented Sowing"]]
 fig15=px.bar(xprevented,x="Year",y="Prevented Sowing",title="<b>Total Prevented Sowing per Year<b>",text_auto=True)
 fig15.update_traces(marker_color='green')
 fig15.update_layout(yaxis=dict(showgrid=False),plot_bgcolor="lightsteelblue",paper_bgcolor="lightsteelblue")
 st.plotly_chart(fig15)
+xprevented.reset_index(drop=True,inplace=True)
+st.dataframe(xprevented)
+
