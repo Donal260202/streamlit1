@@ -2,7 +2,7 @@ import pandas as pd
 import plotly.express as px
 import streamlit as st
 st.set_page_config(page_title="PMFBY ANALYSIS",layout="wide")
-df=pd.read_excel("C:\\Users\\dell\\Desktop\\PMFBY.xlsx")
+df=pd.read_excel("PMFBY.xlsx")
 #st.dataframe(df)
 
 st.title("Analysis of PMFBY Data 2018-2023")
