@@ -460,7 +460,7 @@ def Year_Wise_Analysis():
     st.pyplot(fig)
 
     xrevenue=df_selection[["Year","Revenue"]]
-    fig14=px.bar(xrevenue,x="Year",y="Revenue",title="<b>Total Revenue per Year<b>",text_auto=True)
+    fig14=px.bar(xrevenue,x="Year",y="Revenue",title="<b>Total Revenue in CR. per Year<b>",text_auto=True)
     fig14.update_traces(marker_color='green')
     fig14.update_layout(yaxis=dict(showgrid=False),plot_bgcolor="blanchedalmond",paper_bgcolor="blanchedalmond")
     st.plotly_chart(fig14)
